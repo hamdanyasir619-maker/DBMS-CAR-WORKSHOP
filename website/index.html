@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProGear - Car Workshop Management System</title>
+    <meta name="description" content="A comprehensive Car Workshop Management System for handling customers, vehicles, mechanics, service jobs, spare parts, and invoices.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-wrench"></i> ProGear
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#dashboard">Dashboard</a></li>
+                <li><a href="#" class="btn btn-primary">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header id="home" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h1 class="animate-up">Next-Gen Car Workshop<br><span class="text-accent">Management System</span></h1>
+            <p class="animate-up delay-1">Streamline your operations, track vehicle service history, manage spare parts inventory, and generate seamless invoices with our 3NF normalized database architecture.</p>
+            <div class="hero-buttons animate-up delay-2">
+                <a href="#dashboard" class="btn btn-primary btn-large">View Dashboard</a>
+                <a href="#features" class="btn btn-outline btn-large">Explore Features</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="features" class="features section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Powerful Capabilities</h2>
+                <p>Built upon a robust, fully normalized schema to ensure data integrity and lightning-fast performance.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card glass">
+                    <div class="icon-wrapper"><i class="fa-solid fa-users"></i></div>
+                    <h3>Customer Management</h3>
+                    <p>Efficiently manage customer profiles, contact information, and track all their registered vehicles in one place.</p>
+                </div>
+                <div class="feature-card glass">
+                    <div class="icon-wrapper"><i class="fa-solid fa-car"></i></div>
+                    <h3>Vehicle Tracking</h3>
+                    <p>Record vehicle makes, models, registration numbers, and full service histories linked directly to the owners.</p>
+                </div>
+                <div class="feature-card glass">
+                    <div class="icon-wrapper"><i class="fa-solid fa-clipboard-list"></i></div>
+                    <h3>Service Jobs</h3>
+                    <p>Assign mechanics, track job statuses (Pending, In Progress, Completed), and monitor labor costs seamlessly.</p>
+                </div>
+                <div class="feature-card glass">
+                    <div class="icon-wrapper"><i class="fa-solid fa-boxes-stacked"></i></div>
+                    <h3>Inventory Control</h3>
+                    <p>Keep track of spare parts, unit prices, and automatically deduct quantities used in service jobs.</p>
+                </div>
+                <div class="feature-card glass">
+                    <div class="icon-wrapper"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+                    <h3>Billing & Invoicing</h3>
+                    <p>Generate detailed invoices automatically from completed service jobs and track payment statuses.</p>
+                </div>
+                <div class="feature-card glass">
+                    <div class="icon-wrapper"><i class="fa-solid fa-user-gear"></i></div>
+                    <h3>Mechanic Routing</h3>
+                    <p>Manage mechanic profiles, skill levels (Junior to Master), and optimize job assignments.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="dashboard" class="dashboard-preview section">
+        <div class="container">
+            <div class="dashboard-content">
+                <div class="dashboard-text">
+                    <h2>Experience the <span class="text-accent">Dark Mode Dashboard</span></h2>
+                    <p>Our intuitive user interface allows workshop managers to get a bird's eye view of all active service jobs, recent invoices, and inventory alerts. Designed with aesthetics and productivity in mind.</p>
+                    <ul class="check-list">
+                        <li><i class="fa-solid fa-check text-accent"></i> Real-time analytics and charts</li>
+                        <li><i class="fa-solid fa-check text-accent"></i> Instant search for vehicles & customers</li>
+                        <li><i class="fa-solid fa-check text-accent"></i> Beautiful dark theme reduces eye strain</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary mt-4">Try Live Demo</a>
+                </div>
+                <div class="dashboard-image-wrapper glass">
+                    <img src="assets/dashboard_mockup.png" alt="ProGear Dashboard Interface" class="dashboard-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta section">
+        <div class="container cta-container glass">
+            <h2>Ready to Elevate Your Workshop?</h2>
+            <p>Join the next generation of auto repair shops utilizing robust database management.</p>
+            <a href="#" class="btn btn-primary btn-large">Get Started Today</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <a href="#" class="logo">
+                    <i class="fa-solid fa-wrench"></i> ProGear
+                </a>
+                <p>The ultimate Car Workshop Management System built for modern auto businesses.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#dashboard">Dashboard</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Contact</h4>
+                <p><i class="fa-solid fa-envelope"></i> contact@progear.test</p>
+                <p><i class="fa-solid fa-phone"></i> +1 (555) 123-4567</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 ProGear Workshop Management. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
