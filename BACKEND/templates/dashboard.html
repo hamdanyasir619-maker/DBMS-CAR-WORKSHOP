@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block page_title %}Dashboard{% endblock %}
+
+{% block content %}
+<!-- Stats Cards -->
+<div class="stats-grid">
+    <div class="stat-card">
+        <div class="stat-icon" style="background:rgba(0,210,255,0.12);">
+            <i class="fa-solid fa-users" style="color:#00d2ff;"></i>
+        </div>
+        <div class="stat-info">
+            <span class="stat-label">Customers</span>
+            <span class="stat-value">{{ stats.customers }}</span>
+        </div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon" style="background:rgba(139,92,246,0.12);">
+            <i class="fa-solid fa-car" style="color:#8b5cf6;"></i>
+        </div>
+        <div class="stat-info">
+            <span class="stat-label">Vehicles</span>
+            <span class="stat-value">{{ stats.vehicles }}</span>
+        </div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon" style="background:rgba(34,197,94,0.12);">
+            <i class="fa-solid fa-user-gear" style="color:#22c55e;"></i>
+        </div>
+        <div class="stat-info">
+            <span class="stat-label">Mechanics</span>
+            <span class="stat-value">{{ stats.mechanics }}</span>
+        </div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon" style="background:rgba(251,146,60,0.12);">
+            <i class="fa-solid fa-boxes-stacked" style="color:#fb923c;"></i>
+        </div>
+        <div class="stat-info">
+            <span class="stat-label">Spare Parts</span>
+            <span class="stat-value">{{ stats.parts }}</span>
+        </div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon" style="background:rgba(250,204,21,0.12);">
+            <i class="fa-solid fa-hourglass-half" style="color:#facc15;"></i>
+        </div>
+        <div class="stat-info">
+            <span class="stat-label">Jobs Pending</span>
+            <span class="stat-value">{{ stats.jobs_pending }}</span>
+        </div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon" style="background:rgba(59,130,246,0.12);">
+            <i class="fa-solid fa-spinner" style="color:#3b82f6;"></i>
+        </div>
+        <div class="stat-info">
+            <span class="stat-label">In Progress</span>
+            <span class="stat-value">{{ stats.jobs_in_progress }}</span>
+        </div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon" style="background:rgba(34,197,94,0.12);">
+            <i class="fa-solid fa-circle-check" style="color:#22c55e;"></i>
+        </div>
+        <div class="stat-info">
+            <span class="stat-label">Jobs Completed</span>
+            <span class="stat-value">{{ stats.jobs_completed }}</span>
+        </div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon" style="background:rgba(239,68,68,0.12);">
+            <i class="fa-solid fa-file-invoice-dollar" style="color:#ef4444;"></i>
+        </div>
+        <div class="stat-info">
+            <span class="stat-label">Unpaid Invoices</span>
+            <span class="stat-value">{{ stats.invoices_unpaid }}</span>
+        </div>
+    </div>
+</div>
+
+<!-- Recent Jobs -->
+<div class="card mt-6">
+    <div class="card-header">
+        <h2><i class="fa-solid fa-clock-rotate-left"></i> Recent Service Jobs</h2>
+        <a href="{{ url_for('add_job') }}" class="btn btn-primary btn-sm">
+            <i class="fa-solid fa-plus"></i> New Job
+        </a>
+    </div>
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th><th>Date</th><th>Vehicle</th><th>Mechanic</th><th>Status</th><th>Labor Cost</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for job in recent_jobs %}
+                <tr>
+                    <td>{{ job.JobID }}</td>
+                    <td>{{ job.Date }}</td>
+                    <td>{{ job.RegNo }} — {{ job.Make }} {{ job.ModelName }}</td>
+                    <td>{{ job.MechanicName }}</td>
+                    <td><span class="badge badge-{{ job.Status | lower | replace(' ', '-') }}">{{ job.Status }}</span></td>
+                    <td>${{ "%.2f"|format(job.LaborCost) }}</td>
+                </tr>
+                {% else %}
+                <tr><td colspan="6" class="empty">No jobs found.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Quick Links -->
+<div class="quick-links mt-6">
+    <a href="{{ url_for('customers') }}" class="quick-card glass">
+        <i class="fa-solid fa-users"></i><span>Manage Customers</span>
+    </a>
+    <a href="{{ url_for('vehicles') }}" class="quick-card glass">
+        <i class="fa-solid fa-car"></i><span>Manage Vehicles</span>
+    </a>
+    <a href="{{ url_for('mechanics') }}" class="quick-card glass">
+        <i class="fa-solid fa-user-gear"></i><span>Manage Mechanics</span>
+    </a>
+    <a href="{{ url_for('parts') }}" class="quick-card glass">
+        <i class="fa-solid fa-boxes-stacked"></i><span>Spare Parts</span>
+    </a>
+    <a href="{{ url_for('invoices') }}" class="quick-card glass">
+        <i class="fa-solid fa-file-invoice-dollar"></i><span>Invoices</span>
+    </a>
+</div>
+{% endblock %}

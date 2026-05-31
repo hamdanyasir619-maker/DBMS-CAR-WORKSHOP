@@ -1,8 +1,8 @@
-# Milestone 4: Database Setup (DDL)
+# Milestone 4: Database Setup (DDL).
 
 This document explains the steps taken to generate the Data Definition Language (DDL) scripts for the Car Workshop Management System database setup.
 
-## Step 1: DDL Script Creation
+## Step 1: DDL Script Creation.
 A comprehensive SQL script file (`schema.sql`) has been created in the `Milestone4` folder. This script generates the 7 core tables derived from our finalized normalized schema.
 
 ### Constraints Implemented:
@@ -26,7 +26,7 @@ A comprehensive SQL script file (`schema.sql`) has been created in the `Mileston
     *   Frequently queried status fields (e.g., `PaymentStatus`, `Status`).
     *   Common lookup fields like `Email`, `RegNo`, and `LastName`.
 
-## Step 2: Verification Process
+## Step 2: Verification Process.
 The script has been structured specifically for full compatibility with **MySQL Workbench**.
 
 **Next Action for the User:** 
@@ -35,6 +35,6 @@ The script has been structured specifically for full compatibility with **MySQL 
 3. Use the built-in "Reverse Engineer" tool in MySQL Workbench (`Database` -> `Reverse Engineer...`) to automatically generate the EER diagram.
 4. Verify that the generated diagram perfectly matches the structural logic expected from the DDL code.
 
-## Step 3: Version Control
+## Step 3: Version Control.
 The schema script and this documentation file are staged for commit with the required message format:
 `M4: DDL scripts added, EER diagram verified`

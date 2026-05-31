@@ -1,7 +1,7 @@
 -- Milestone 5: DML Operations & Validation Queries
 
 -- ============================================================================
--- 1. DML OPERATIONS (UPDATE and DELETE)
+-- 1. DML OPERATIONS (UPDATE and DELETE).
 -- ============================================================================
 
 -- UPDATE OPERATION: Increase the LaborCost for jobs that are currently 'Pending' 
@@ -17,7 +17,7 @@ WHERE PaymentStatus = 'Unpaid' AND PaymentMethod = 'N/A' AND InvoiceID = 3;
 
 
 -- ============================================================================
--- 2. VALIDATION QUERIES
+-- 2. VALIDATION QUERIES.
 -- ============================================================================
 
 -- A. COUNT(*) for each table to confirm row counts
