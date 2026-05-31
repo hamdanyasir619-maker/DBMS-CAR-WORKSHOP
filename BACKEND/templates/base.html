@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}ProGear{% endblock %} — Car Workshop Management</title>
+    <meta name="description" content="ProGear Car Workshop Management System — full CRUD dashboard.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="{{ url_for('dashboard') }}" class="logo">
+                <i class="fa-solid fa-wrench"></i>
+                <span>ProGear</span>
+            </a>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="{{ url_for('dashboard') }}" class="nav-item {% if request.endpoint == 'dashboard' %}active{% endif %}">
+                <i class="fa-solid fa-gauge-high"></i> Dashboard
+            </a>
+            <a href="{{ url_for('customers') }}" class="nav-item {% if 'customer' in request.endpoint %}active{% endif %}">
+                <i class="fa-solid fa-users"></i> Customers
+            </a>
+            <a href="{{ url_for('vehicles') }}" class="nav-item {% if 'vehicle' in request.endpoint %}active{% endif %}">
+                <i class="fa-solid fa-car"></i> Vehicles
+            </a>
+            <a href="{{ url_for('mechanics') }}" class="nav-item {% if 'mechanic' in request.endpoint %}active{% endif %}">
+                <i class="fa-solid fa-user-gear"></i> Mechanics
+            </a>
+            <a href="{{ url_for('jobs') }}" class="nav-item {% if 'job' in request.endpoint %}active{% endif %}">
+                <i class="fa-solid fa-clipboard-list"></i> Service Jobs
+            </a>
+            <a href="{{ url_for('parts') }}" class="nav-item {% if 'part' in request.endpoint %}active{% endif %}">
+                <i class="fa-solid fa-boxes-stacked"></i> Spare Parts
+            </a>
+            <a href="{{ url_for('invoices') }}" class="nav-item {% if 'invoice' in request.endpoint %}active{% endif %}">
+                <i class="fa-solid fa-file-invoice-dollar"></i> Invoices
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <span><i class="fa-solid fa-database"></i> carworkshop DB</span>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Bar -->
+        <header class="topbar">
+            <button class="sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <h1 class="page-title">{% block page_title %}Dashboard{% endblock %}</h1>
+            <div class="topbar-right">
+                <span class="badge-db"><i class="fa-solid fa-circle" style="color:#22c55e; font-size:0.5rem;"></i> Connected</span>
+            </div>
+        </header>
+
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <div class="flash-container">
+            {% for category, message in messages %}
+            <div class="flash flash-{{ category }}">
+                <i class="fa-solid {% if category == 'success' %}fa-check-circle{% else %}fa-triangle-exclamation{% endif %}"></i>
+                {{ message }}
+                <button onclick="this.parentElement.remove()" class="flash-close">&times;</button>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+
+        <!-- Page Content -->
+        <div class="page-content">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+    <script>
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('collapsed');
+        }
+        // Auto-dismiss flash after 4s
+        setTimeout(() => {
+            document.querySelectorAll('.flash').forEach(el => el.remove());
+        }, 4000);
+    </script>
+</body>
+</html>

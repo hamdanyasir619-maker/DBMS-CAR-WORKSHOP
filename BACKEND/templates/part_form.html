@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}{{ action }} Spare Part{% endblock %}
+{% block page_title %}{{ action }} Spare Part{% endblock %}
+
+{% block content %}
+<div class="card form-card">
+    <div class="card-header">
+        <h2><i class="fa-solid fa-boxes-stacked"></i> {{ action }} Spare Part</h2>
+        <a href="{{ url_for('parts') }}" class="btn btn-sm btn-outline">
+            <i class="fa-solid fa-arrow-left"></i> Back
+        </a>
+    </div>
+    <form method="POST" class="form-grid">
+        <div class="form-group form-group-full">
+            <label for="name">Part Name</label>
+            <input type="text" id="name" name="name" required
+                   value="{{ part.Name if part else '' }}" placeholder="e.g. Brake Pad Set">
+        </div>
+        <div class="form-group">
+            <label for="quantity">Quantity in Stock</label>
+            <input type="number" id="quantity" name="quantity" min="0" required
+                   value="{{ part.Quantity if part else 0 }}">
+        </div>
+        <div class="form-group">
+            <label for="unit_price">Unit Price ($)</label>
+            <input type="number" id="unit_price" name="unit_price" min="0" step="0.01" required
+                   value="{{ part.UnitPrice if part else '0.00' }}" placeholder="0.00">
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                <i class="fa-solid fa-floppy-disk"></i> {{ action }} Part
+            </button>
+            <a href="{{ url_for('parts') }}" class="btn btn-outline">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

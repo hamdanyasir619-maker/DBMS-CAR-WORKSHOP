@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Mechanics{% endblock %}
+{% block page_title %}Mechanics{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h2><i class="fa-solid fa-user-gear"></i> All Mechanics</h2>
+        <a href="{{ url_for('add_mechanic') }}" class="btn btn-primary btn-sm">
+            <i class="fa-solid fa-plus"></i> Add Mechanic
+        </a>
+    </div>
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th><th>Name</th><th>Skill Level</th><th>Contact</th><th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for m in mechanics %}
+                <tr>
+                    <td>{{ m.MechanicID }}</td>
+                    <td>{{ m.FirstName }} {{ m.LastName }}</td>
+                    <td>
+                        <span class="badge badge-skill-{{ m.SkillLevel | lower }}">{{ m.SkillLevel }}</span>
+                    </td>
+                    <td>{{ m.Contact }}</td>
+                    <td class="actions">
+                        <a href="{{ url_for('edit_mechanic', mid=m.MechanicID) }}" class="btn btn-sm btn-edit">
+                            <i class="fa-solid fa-pen"></i>
+                        </a>
+                        <a href="{{ url_for('delete_mechanic', mid=m.MechanicID) }}"
+                           class="btn btn-sm btn-delete"
+                           onclick="return confirm('Delete this mechanic?')">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr><td colspan="5" class="empty">No mechanics found.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

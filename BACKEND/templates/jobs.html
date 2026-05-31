@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Service Jobs{% endblock %}
+{% block page_title %}Service Jobs{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h2><i class="fa-solid fa-clipboard-list"></i> All Service Jobs</h2>
+        <a href="{{ url_for('add_job') }}" class="btn btn-primary btn-sm">
+            <i class="fa-solid fa-plus"></i> New Job
+        </a>
+    </div>
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Job ID</th><th>Date</th><th>Vehicle</th><th>Mechanic</th><th>Status</th><th>Labor Cost</th><th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for j in jobs %}
+                <tr>
+                    <td>#{{ j.JobID }}</td>
+                    <td>{{ j.Date }}</td>
+                    <td>{{ j.RegNo }} — {{ j.Make }} {{ j.ModelName }}</td>
+                    <td>{{ j.MechanicName }}</td>
+                    <td><span class="badge badge-{{ j.Status | lower | replace(' ', '-') }}">{{ j.Status }}</span></td>
+                    <td>${{ "%.2f"|format(j.LaborCost) }}</td>
+                    <td class="actions">
+                        <a href="{{ url_for('edit_job', jid=j.JobID) }}" class="btn btn-sm btn-edit">
+                            <i class="fa-solid fa-pen"></i>
+                        </a>
+                        <a href="{{ url_for('delete_job', jid=j.JobID) }}"
+                           class="btn btn-sm btn-delete"
+                           onclick="return confirm('Delete this job?')">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr><td colspan="7" class="empty">No service jobs found.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

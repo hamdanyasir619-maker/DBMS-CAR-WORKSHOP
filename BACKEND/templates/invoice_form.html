@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}{{ action }} Invoice{% endblock %}
+{% block page_title %}{{ action }} Invoice{% endblock %}
+
+{% block content %}
+<div class="card form-card">
+    <div class="card-header">
+        <h2><i class="fa-solid fa-file-invoice-dollar"></i> {{ action }} Invoice</h2>
+        <a href="{{ url_for('invoices') }}" class="btn btn-sm btn-outline">
+            <i class="fa-solid fa-arrow-left"></i> Back
+        </a>
+    </div>
+    <form method="POST" class="form-grid">
+        <div class="form-group">
+            <label for="date">Invoice Date</label>
+            <input type="date" id="date" name="date" required
+                   value="{{ invoice.Date if invoice else today }}">
+        </div>
+        <div class="form-group">
+            <label for="payment_status">Payment Status</label>
+            <select id="payment_status" name="payment_status" required>
+                {% for s in ['Paid', 'Unpaid', 'Refunded'] %}
+                <option value="{{ s }}"
+                    {% if invoice and invoice.PaymentStatus == s %}selected{% endif %}>{{ s }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="payment_method">Payment Method</label>
+            <select id="payment_method" name="payment_method">
+                <option value="">-- Select Method --</option>
+                {% for m in ['Cash', 'Credit Card', 'Debit Card', 'Bank Transfer', 'Online'] %}
+                <option value="{{ m }}"
+                    {% if invoice and invoice.PaymentMethod == m %}selected{% endif %}>{{ m }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="job_id">Linked Service Job</label>
+            <select id="job_id" name="job_id" required>
+                <option value="">-- Select Job --</option>
+                {% for j in jobs %}
+                <option value="{{ j.JobID }}"
+                    {% if invoice and invoice.JobID == j.JobID %}selected{% endif %}>
+                    #{{ j.JobID }} — {{ j.RegNo }} ({{ j.Date }}) [{{ j.Status }}]
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                <i class="fa-solid fa-floppy-disk"></i> {{ action }} Invoice
+            </button>
+            <a href="{{ url_for('invoices') }}" class="btn btn-outline">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}
